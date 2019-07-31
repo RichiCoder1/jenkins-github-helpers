@@ -4,6 +4,7 @@ import { IssuesListCommentsResponseItem } from '@octokit/rest';
 
 module.exports = {
 	name: 'comment',
+	description: 'Posts a comment to a PR',
 	run: async (toolbox: JghToolbox) => {
 		const {
 			print,
@@ -125,10 +126,11 @@ function getGithubParams(toolbox: JghToolbox) {
 async function getCommentBody(toolbox: JghToolbox) {
 	const {
 		parameters: {
-			options: { body, bodyFile, key, once }
+			options: { body, bodyFile, deleteBodyFile, key, once }
 		},
 		strings: { isBlank },
-		filesystem: { existsAsync, readAsync }
+		filesystem: { existsAsync, readAsync, removeAsync },
+		print: { error }
 	} = toolbox;
 
 	if (!isBlank(body)) {
@@ -149,6 +151,14 @@ async function getCommentBody(toolbox: JghToolbox) {
 			commentBody += `\n<sub>this is a bot comment\n<sup>comment key: ${key}</sup></sub>`;
 		} else {
 			commentBody += `\n<sub>this is a bot comment</sub>`;
+		}
+		if (deleteBodyFile) {
+			try {
+				await removeAsync(bodyFile);
+			} catch (e) {
+				error('Failed to remove the comment bodyFile.');
+				error(e);
+			}
 		}
 		return commentBody;
 	}
