@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.0.3...v1.1.0) (2019-07-31)
+
+
+### Features
+
+* add remove bodyFile option ([e8017e8](https://github.com/RichiCoder1/jenkins-github-helpers/commit/e8017e8))
+
 ## [1.0.3](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.0.2...v1.0.3) (2019-07-31)
 
 
