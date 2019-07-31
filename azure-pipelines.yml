@@ -27,5 +27,5 @@ steps:
   displayName: 'npm build'
 
 - script: |
-    npx semantic-release
+   GH_TOKEN=$(GH_TOKEN) npx semantic-release
   displayName: 'npx semantic-release'
