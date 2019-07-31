@@ -11,6 +11,7 @@ npx -p @richicoder1/jenkins-github-helpers jgh comment --body "Hello World!"
 ```
 
 Options are:
+
 | Flag | Description |
 |----------|-----------------------------------------------------------|
 | `--body <string>` | The body of the comment. Either `--body` or `--bodyFile` is required. |
