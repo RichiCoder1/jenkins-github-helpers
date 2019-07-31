@@ -10,13 +10,22 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- checkout: self
+  persistCredentials: true
+  
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
-    npm run build
-    npx semantic-release
+    npm ci
   displayName: 'npm install and build'
+
+- script: |
+    npm run build
+  displayName: 'npm build'
+
+- script: |
+    npx semantic-release
+  displayName: 'npx semantic-release'
