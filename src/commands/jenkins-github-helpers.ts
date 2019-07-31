@@ -9,14 +9,16 @@ module.exports = {
 		const {
 			print,
 			parameters: { options },
-			strings: { isBlank },
+			strings: { isBlank, isNotString },
 			github
 		} = toolbox;
 
-		const { body, bodyFile, key, once, token } = options;
+		const { body, bodyFile, once, token } = options;
 
-		if (once === true && isBlank(key)) {
-			print.error('You must provide a key to post a comment only once.');
+		if (once && isNotString(once)) {
+			print.error(
+				'If you provide --once, it much be based a string value which is the unique key for this comment.'
+			);
 			print.printHelp(toolbox);
 			return 1;
 		}
@@ -61,7 +63,7 @@ module.exports = {
 				commentsUrl
 			)) as IssuesListCommentsResponseItem[];
 			for (const comment of comments) {
-				if (comment.body.includes(`comment key: ${key}`)) {
+				if (comment.body.includes(`comment key: ${once}`)) {
 					print.info(
 						'Found previous comment. The flag --once is enabled, skipping commenting.'
 					);
@@ -126,7 +128,7 @@ function getGithubParams(toolbox: JghToolbox) {
 async function getCommentBody(toolbox: JghToolbox) {
 	const {
 		parameters: {
-			options: { body, bodyFile, deleteBodyFile, key, once }
+			options: { body, bodyFile, deleteBodyFile, once }
 		},
 		strings: { isBlank },
 		filesystem: { existsAsync, readAsync, removeAsync },
@@ -136,7 +138,7 @@ async function getCommentBody(toolbox: JghToolbox) {
 	if (!isBlank(body)) {
 		let commentBody = body;
 		if (once) {
-			commentBody += `\n<sub>this is a bot comment\n<sup>comment key: ${key}</sup></sub>`;
+			commentBody += `\n<sub>this is a bot comment\n<sup>comment key: ${once}</sup></sub>`;
 		} else {
 			commentBody += `\n<sub>this is a bot comment</sub>`;
 		}
@@ -148,7 +150,7 @@ async function getCommentBody(toolbox: JghToolbox) {
 
 		let commentBody: string = await readAsync(bodyFile, 'utf8');
 		if (once) {
-			commentBody += `\n<sub>this is a bot comment\n<sup>comment key: ${key}</sup></sub>`;
+			commentBody += `\n<sub>this is a bot comment\n<sup>comment key: ${once}</sup></sub>`;
 		} else {
 			commentBody += `\n<sub>this is a bot comment</sub>`;
 		}
