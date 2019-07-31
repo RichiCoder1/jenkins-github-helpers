@@ -1,6 +1,6 @@
 {
 	"name": "jenkins-github-helpers",
-	"version": "0.0.0-development",
+	"version": "1.0.0",
 	"description": "jenkins-github-helpers CLI",
 	"private": true,
 	"bin": {
