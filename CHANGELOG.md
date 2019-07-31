@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.1.0...v1.2.0) (2019-07-31)
+
+
+### Features
+
+* consolidate once and key ([1f7117d](https://github.com/RichiCoder1/jenkins-github-helpers/commit/1f7117d))
+
 # [1.1.0](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.0.3...v1.1.0) (2019-07-31)
 
 
