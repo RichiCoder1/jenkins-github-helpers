@@ -1,0 +1,58 @@
+{
+	"name": "jenkins-github-helpers",
+	"version": "0.0.1",
+	"description": "jenkins-github-helpers CLI",
+	"private": true,
+	"bin": {
+		"jgh": "bin/jgh"
+	},
+	"scripts": {
+		"format": "prettier --write **/*.{js,ts,tsx,json}",
+		"lint": "tslint -p .",
+		"clean-build": "del-cli ./build --force",
+		"compile": "tsc -p .",
+		"build": "run-s format lint clean-build compile",
+		"test": "jest",
+		"watch": "jest --watch",
+		"snapupdate": "jest --updateSnapshot",
+		"coverage": "jest --coverage"
+	},
+	"files": [
+		"tsconfig.json",
+		"tslint.json",
+		"build",
+		"LICENSE",
+		"readme.md",
+		"docs",
+		"bin"
+	],
+	"license": "MIT",
+	"dependencies": {
+		"@octokit/rest": "^16.28.7",
+		"gluegun": "^2.1.0",
+		"ts-node": "^7.0.1",
+		"typescript": "3.2.2"
+	},
+	"devDependencies": {
+		"@types/jest": "^23.3.10",
+		"@types/node": "^10.12.12",
+		"del-cli": "^2.0.0",
+		"jest": "^23.6.0",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^1.12.1",
+		"ts-jest": "^23.10.5",
+		"tslint": "^5.12.0",
+		"tslint-config-prettier": "^1.17.0",
+		"tslint-config-standard": "^8.0.1"
+	},
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node"
+	},
+	"prettier": {
+		"semi": true,
+		"singleQuote": true,
+		"tabWidth": 4,
+		"useTabs": true
+	}
+}
