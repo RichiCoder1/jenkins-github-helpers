@@ -1,6 +1,6 @@
 {
 	"name": "@richicoder1/jenkins-github-helpers",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "jenkins-github-helpers CLI",
 	"bin": {
 		"jgh": "bin/jgh"

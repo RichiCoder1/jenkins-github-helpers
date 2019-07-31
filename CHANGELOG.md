@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.2.0...v1.2.1) (2019-07-31)
+
+
+### Bug Fixes
+
+* add flags and fix formatting ([da42b15](https://github.com/RichiCoder1/jenkins-github-helpers/commit/da42b15))
+
 # [1.2.0](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.1.0...v1.2.0) (2019-07-31)
 
 
