@@ -2,7 +2,6 @@
 	"name": "@richicoder1/jenkins-github-helpers",
 	"version": "1.0.1",
 	"description": "jenkins-github-helpers CLI",
-	"private": true,
 	"bin": {
 		"jgh": "bin/jgh"
 	},
