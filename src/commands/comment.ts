@@ -9,19 +9,11 @@ module.exports = {
 		const {
 			print,
 			parameters: { options },
-			strings: { isBlank, isNotString },
+			strings: { isBlank },
 			github
 		} = toolbox;
 
 		const { body, bodyFile, once, token } = options;
-
-		if (once && isNotString(once)) {
-			print.error(
-				'If you provide --once, it much be based a string value which is the unique key for this comment.'
-			);
-			print.printHelp(toolbox);
-			return 1;
-		}
 
 		if (isBlank(body) && isBlank(bodyFile)) {
 			print.error('You must provide either --body or --bodyFile.');
@@ -55,6 +47,8 @@ module.exports = {
 			return 1;
 		}
 
+		const commentBody = await getCommentBody(toolbox);
+
 		if (once) {
 			const commentsUrl = github.client.issues.listComments.endpoint.merge(
 				gitBuildInfo
@@ -63,12 +57,22 @@ module.exports = {
 				commentsUrl
 			)) as IssuesListCommentsResponseItem[];
 			for (const comment of comments) {
-				if (comment.body.includes(`comment key: ${once}`)) {
-					print.info(
-						'Found previous comment. The flag --once is enabled, skipping commenting.'
-					);
-					print.info(comment.html_url);
-					return 0;
+				if (once === true) {
+					if (comment.body.includes(commentBody)) {
+						print.info(
+							'Found previous comment. The flag --once is enabled, skipping commenting.'
+						);
+						print.info(comment.html_url);
+						return 0;
+					}
+				} else {
+					if (comment.body.includes(`comment key: ${once}`)) {
+						print.info(
+							'Found previous comment. The flag --once is enabled, skipping commenting.'
+						);
+						print.info(comment.html_url);
+						return 0;
+					}
 				}
 			}
 		}
@@ -77,7 +81,7 @@ module.exports = {
 		// comment. The pull request api's comments
 		const commentOptions = {
 			...gitBuildInfo,
-			body: await getCommentBody(toolbox)
+			body: commentBody
 		};
 
 		await github.client.issues.createComment(commentOptions);
@@ -137,7 +141,7 @@ async function getCommentBody(toolbox: JghToolbox) {
 
 	if (!isBlank(body)) {
 		let commentBody = body;
-		if (once) {
+		if (once && once !== true) {
 			commentBody += `\n<sub>this is a bot comment\n<sup>comment key: ${once}</sup></sub>`;
 		} else {
 			commentBody += `\n<sub>this is a bot comment</sub>`;
@@ -149,7 +153,7 @@ async function getCommentBody(toolbox: JghToolbox) {
 		}
 
 		let commentBody: string = await readAsync(bodyFile, 'utf8');
-		if (once) {
+		if (once && once !== true) {
 			commentBody += `\n<sub>this is a bot comment\n<sup>comment key: ${once}</sup></sub>`;
 		} else {
 			commentBody += `\n<sub>this is a bot comment</sub>`;
