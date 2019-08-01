@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.3.2...v1.4.0) (2019-08-01)
+
+
+### Features
+
+* allow leaving off the key for comment ([36bb8b1](https://github.com/RichiCoder1/jenkins-github-helpers/commit/36bb8b1))
+
 ## [1.3.2](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.3.1...v1.3.2) (2019-08-01)
 
 
