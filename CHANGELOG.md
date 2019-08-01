@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.3.1...v1.3.2) (2019-08-01)
+
+
+### Bug Fixes
+
+* fixup doc NOTE for changed ([69c3b48](https://github.com/RichiCoder1/jenkins-github-helpers/commit/69c3b48))
+
 ## [1.3.1](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.3.0...v1.3.1) (2019-08-01)
 
 
