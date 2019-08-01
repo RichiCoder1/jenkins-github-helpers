@@ -69,7 +69,7 @@ _error_
 | `--json`    | Output results to `stdout` as json. Always returns `0`.                                                                                  |
 | `--verbose` | Outputs the changed files in addition the the matched files. In `--json` mode, this means there will be a `changed` array in the result. |
 
-**NOTE:** This command assumes the presence of a `GH_TOKEN` that has permissions to add comments to a link. It also assumes the presense of either a `CHANGE_URL`, or a `GIT_URL` formatted as an https git link and a `CHANGE_ID`. The former _should_ be provided in a standard jenkins environment.
+**NOTE:** This command assumes the presence of `GIT_COMMIT` and the very least. This, however, only gets the changed files for the current commit. To get the full set of changes since a previous build, you should also provide one of `GIT_PREVIOUS_SUCCESSFUL_COMMIT`, `GIT_PREVIOUS_COMMIT`, or `CHANGE_TARGET`.
 
 # License
 
