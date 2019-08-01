@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.2.1...v1.3.0) (2019-08-01)
+
+
+### Features
+
+* add changed command ([c19686a](https://github.com/RichiCoder1/jenkins-github-helpers/commit/c19686a))
+
 ## [1.2.1](https://github.com/RichiCoder1/jenkins-github-helpers/compare/v1.2.0...v1.2.1) (2019-07-31)
 
 
